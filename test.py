@@ -6,6 +6,10 @@ import numpy as np
 import pandas as pd
 from toad import quality
 from binning.tree import *
+from sklearn.ensemble import RandomForestClassifier
+from quality.information_value import IV
+from quality.information_value import WOETransform
+from sklearn.tree import DecisionTreeClassifier
 
 
 print("\033[91m{}\033[0m".format("This is red text"))  # 红色
@@ -14,6 +18,7 @@ print("\033[94m{}\033[0m".format("This is blue text"))  # 蓝色
 
 
 if __name__ == '__main__':
-    data = pd.read_csv('dataset/保险反欺诈预测_train.csv')[['incident_severity', 'fraud']]
-    TreeCateBinning(data['incident_severity'], data['fraud'], max_leaf_nodes=3, criterion='gini')
+    X = [1, 0, 1, 0, 1, 0, 1, 1, 1, 0]
+    Y = [1, 1, 0, 0, 1, 0, 1, 1, 0, 0]
+    iv = IV(X, Y)
 
